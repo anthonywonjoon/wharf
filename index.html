@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wharf - Dockerfile Builder</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wharf — Build your Dockerfile, layer by layer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <header class="hero">
-        <div class ="hero-inner">
-            <div class="hero-eyebrow"><span class="dot"></span>Wharf - Dockerfile Builder</div>
-            <h1 class="title">Load your <span class="accent">containers</span> one instruction at a time</h1>
-            <p class="subtitle">Drag instruction blocks from the manifest onto the deck, fill in the details, and watch a real Dockerfile assemble on the right.</p>
-        </div>
-    </header>
 
-    <div class="workbench">
-        <div class="panel palette">
-            <div class="panel-head"><h2>Manifest</h2><span class="count">drag to deck</span></div>
-            <div class="palette-list" id="palette-list"></div>
-            <div class="palette-hint">Drag a block onto the deck, or click it to add it to the deck</div>
-        </div>
-        <div class="panel canvas-wrap">
-            <div class="panel-head"><h2>The Deck</h2><span class="count" id="block-count">0 layers</span></div>
-            <div id="canvas"></div>
-        </div>
-        <div class="panel output-wrap">
-            <div class="panel-head"><h2>Dockerfile</h2><span class="count" id="line-count">0 lines</span></div>
-            <div id="dockerfile-output"></div>
-            <div class="output-actions">
-                <button class="btn" id="copy-btn">Copy</button>
-                <button class="btn primary" id="download-btn">Download</button>
-            </div>
-        </div>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="dot"></span> Wharf — Dockerfile builder</div>
+      <h1 class="title">Load your <span class="accent">containers</span>,<br>one instruction at a time.</h1>
+      <p class="subtitle">Drag instruction blocks from the manifest onto the deck, fill in the details, and watch a real Dockerfile assemble on the right.</p>
+    </div>
+  </header>
+
+  <div class="workbench">
+    <div class="panel palette">
+      <div class="panel-head"><h2>Manifest</h2><span class="count">drag to deck</span></div>
+      <div class="palette-list" id="palette-list"></div>
+      <div class="palette-hint">Drag a block onto the deck, or click it to add it to the end of the stack.</div>
     </div>
 
-    <script src="js/schema.js"></script>
+    <div class="panel canvas-wrap">
+      <div class="panel-head"><h2>The Deck</h2><span class="count" id="block-count">0 layers</span></div>
+      <div id="canvas"></div>
+    </div>
+
+    <div class="panel output-wrap">
+      <div class="panel-head"><h2>Dockerfile</h2><span class="count" id="line-count">0 lines</span></div>
+      <div id="dockerfile-output"></div>
+      <div class="output-actions">
+        <button class="btn" id="copy-btn">Copy</button>
+        <button class="btn primary" id="download-btn">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
