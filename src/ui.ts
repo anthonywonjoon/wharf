@@ -214,13 +214,15 @@ export function renderCanvas(): void {
             e.preventDefault();
             e.stopPropagation();
             const data = e.dataTransfer?.getData('text/plain') ?? '';
+
             if (data.startsWith('reorder')) {
                 const draggedId = parseInt(data.split(':')[1], 10);
                 reorderBlocks(draggedId, block.id);
                 renderAll();
             } else if (data.startsWith('palette')) {
                 const type = data.split(':')[1] as DockerInstructionType;
-                addBlock(type);
+                const targetIdx = getBlocks().findIndex(b => b.id === block.id);
+                addBlock(type, targetIdx === -1 ? null : targetIdx);
                 renderAll();
             }
         });
