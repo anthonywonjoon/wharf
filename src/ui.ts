@@ -82,6 +82,28 @@ function buildFieldEl(block: Block, fieldDef: FieldDef): HTMLElement {
     input.addEventListener('input', commit);
     input.addEventListener('change', commit);
 
+    // adds in \ when user presses 'Enter' in the textarea for RUN so that command knows theres another line
+    if (fieldDef.shellContinuation && input instanceof HTMLTextAreaElement) {
+        const textarea = input;
+        textarea.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key !== 'Enter' || e.shiftKey) return;
+            e.preventDefault();
+
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+
+            const before = textarea.value.slice(0, start).replace(/[ \t]+$/, '');
+            const after = textarea.value.slice(end);
+            const insertion = ' \\\n';
+
+            textarea.value = before + insertion + after;
+            const newCursor = before.length + insertion.length;
+            textarea.selectionStart = textarea.selectionEnd = newCursor;
+
+            commit();
+        });
+    }
+
     wrap.appendChild(input);
     return wrap;
 }

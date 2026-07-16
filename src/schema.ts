@@ -10,6 +10,7 @@ export interface FieldDef {
     default: string;
     placeholder?: string;
     options?: string[];
+    shellContinuation?: boolean;
 }
 
 export interface KVPair {
@@ -92,7 +93,7 @@ export const DOCKER_SCHEMA: Record<DockerInstructionType, InstructionSchema> = {
         label: 'RUN',
         desc: 'execute a command',
         fields: [
-            { key: 'command', label: 'command', type: 'textarea', default: 'npm install', placeholder: 'npm install' }
+            { key: 'command', label: 'command', type: 'textarea', default: 'npm install', placeholder: 'npm install', shellContinuation: true }
         ],
         render(f) { return `RUN ${f.command || 'echo "no command"'}`; }
     },
